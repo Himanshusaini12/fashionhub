@@ -1,0 +1,21 @@
+.header{
+    background-color: rgb(0, 127, 146);
+    height:100px ;
+    display: flex;
+    justify-content: space-between;
+
+    .logo{
+       padding: 20px;
+        height: 50%;
+    }
+
+    .options{
+        display: flex;
+       
+        padding: 20px;
+        justify-content: flex-end;
+    }
+    .option{
+        padding: 20px;
+    }
+}
