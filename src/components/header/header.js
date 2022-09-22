@@ -11,30 +11,30 @@ import { auth } from "../firebase/firebase";
 
 const Header = ({ currentUser }) => (
   <div className="header">
-    <Router>
+    <Link to="/">
       <img
         className="logo"
         src={require("../../assets/logo.svg").default}
         alt="logo"
       />
-      <div className="options">
-        <Link className="option" to="/shop">
-          shop
+    </Link>
+    <div className="options">
+      <Link className="option" to="/">
+        home
+      </Link>
+      <Link className="option" to="/shop">
+        shop
+      </Link>
+      {currentUser ? (
+        <button className="option" onClick={() => auth.signOut()}>
+          SIGN OUT
+        </button>
+      ) : (
+        <Link className="option" to="/signin">
+          SIGN IN
         </Link>
-        <Link className="option" to="/shop">
-          shop
-        </Link>
-        {currentUser ? (
-          <button className="option" onClick={() => auth.signOut()}>
-            SIGN OUT
-          </button>
-        ) : (
-          <Link className="option" to="/signin">
-            SIGN IN
-          </Link>
-        )}
-      </div>
-    </Router>
+      )}
+    </div>
   </div>
 );
 export default Header;

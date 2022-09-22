@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -24,4 +25,8 @@ export const signInWithGoogle = () => {
       console.log(result);
     })
     .catch((error) => console.log(error));
+};
+
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  if (!userAuth) return;
 };
