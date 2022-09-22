@@ -6,7 +6,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/header/header";
 import Signin from "./pages/sign-in/sign-in";
 import SignInandSignUpPage from "../src/pages/sign-in-and-signup/signin-signup.js";
-import { auth } from "./components/firebase/firebase.js";
+import {
+  auth,
+  createUserProfileDocument,
+} from "./components/firebase/firebase.js";
+
 class App extends React.Component {
   constructor() {
     super();
@@ -19,9 +23,8 @@ class App extends React.Component {
   unSubscribeAuth = null;
 
   componentDidMount() {
-    this.unSubscribeAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentUser: user });
-      console.log(user);
+    this.unSubscribeAuth = auth.onAuthStateChanged(async (user) => {
+      createUserProfileDocument(user);
     });
   }
   componentWillUnmount() {
@@ -30,16 +33,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header currentUser={this.state.currentUser} />
-        <Router>
+      <Router>
+        <div>
+          <Header currentUser={this.state.currentUser} />
+
           <Routes>
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="/shop" element={<ShopPage />} />
             <Route exact path="/signin" element={<SignInandSignUpPage />} />
           </Routes>
-        </Router>
-      </div>
+        </div>
+      </Router>
     );
   }
 }
