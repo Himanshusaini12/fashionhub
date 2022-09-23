@@ -8,7 +8,7 @@ import Signin from "./pages/sign-in/sign-in";
 import SignInandSignUpPage from "../src/pages/sign-in-and-signup/signin-signup.js";
 import {
   auth,
-  createUserProfileDocument,
+  createUserDocumentFromAuth,
 } from "./components/firebase/firebase.js";
 
 class App extends React.Component {
@@ -24,7 +24,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.unSubscribeAuth = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user);
+      createUserDocumentFromAuth(user);
     });
   }
   componentWillUnmount() {

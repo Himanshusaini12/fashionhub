@@ -2,7 +2,14 @@
 import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  getDoc,
+  Firestore,
+} from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyDkUhV0FQO87FMVxDW_VyEKUsxvYceMDXw",
   authDomain: "hsclothing-cd2b5.firebaseapp.com",
@@ -26,7 +33,30 @@ export const signInWithGoogle = () => {
     })
     .catch((error) => console.log(error));
 };
+const db = getFirestore(app);
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
-  if (!userAuth) return;
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalInformation = {}
+) => {
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const creatAt = new Date();
+
+    try {
+      setDoc(userDocRef, {
+        displayName,
+        email,
+        creatAt,
+        ...additionalInformation,
+      });
+    } catch (error) {
+      console.log("Error creatinf the user", error.message);
+    }
+  }
+  return userDocRef;
 };
