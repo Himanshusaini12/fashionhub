@@ -3,6 +3,7 @@ import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
+  onSnapshot,
   getFirestore,
   collection,
   doc,
@@ -41,22 +42,22 @@ export const createUserDocumentFromAuth = async (
 ) => {
   const userDocRef = doc(db, "users", userAuth.uid);
 
-  const userSnapshot = await getDoc(userDocRef);
+  const userSnapshot = onSnapshot(userDocRef, (doc) => {
+    if (!doc.exists()) {
+      const { displayName, email } = userAuth;
+      const creatAt = new Date();
 
-  if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-    const creatAt = new Date();
-
-    try {
-      setDoc(userDocRef, {
-        displayName,
-        email,
-        creatAt,
-        ...additionalInformation,
-      });
-    } catch (error) {
-      console.log("Error creatinf the user", error.message);
+      try {
+        setDoc(userDocRef, {
+          displayName,
+          email,
+          creatAt,
+          ...additionalInformation,
+        });
+      } catch (error) {
+        console.log("Error creatinf the user", error.message);
+      }
     }
-  }
+  });
   return userDocRef;
 };
