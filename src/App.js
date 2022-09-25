@@ -10,6 +10,7 @@ import {
   auth,
   createUserDocumentFromAuth,
 } from "./components/firebase/firebase.js";
+import { onSnapshot, doc } from "firebase/firestore";
 
 class App extends React.Component {
   constructor() {
@@ -24,9 +25,12 @@ class App extends React.Component {
 
   componentDidMount() {
     this.unSubscribeAuth = auth.onAuthStateChanged(async (user) => {
-      createUserDocumentFromAuth(user);
+      const userDocRef = createUserDocumentFromAuth(user);
+
+      this.setState({ currentUser: user.displayName });
     });
   }
+
   componentWillUnmount() {
     this.unSubscribeAuth();
   }

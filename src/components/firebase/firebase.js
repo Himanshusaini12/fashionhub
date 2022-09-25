@@ -3,6 +3,7 @@ import { async } from "@firebase/util";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
+  onSnapshot,
   getFirestore,
   collection,
   doc,
