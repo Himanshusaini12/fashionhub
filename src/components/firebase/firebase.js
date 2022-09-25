@@ -42,22 +42,22 @@ export const createUserDocumentFromAuth = async (
 ) => {
   const userDocRef = doc(db, "users", userAuth.uid);
 
-  const userSnapshot = onSnapshot(userDocRef, (doc) => {
-    if (!doc.exists()) {
-      const { displayName, email } = userAuth;
-      const creatAt = new Date();
+  const userSnapshot = await getDoc(userDocRef);
 
-      try {
-        setDoc(userDocRef, {
-          displayName,
-          email,
-          creatAt,
-          ...additionalInformation,
-        });
-      } catch (error) {
-        console.log("Error creatinf the user", error.message);
-      }
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const creatAt = new Date();
+
+    try {
+      setDoc(userDocRef, {
+        displayName,
+        email,
+        creatAt,
+        ...additionalInformation,
+      });
+    } catch (error) {
+      console.log("Error creatinf the user", error.message);
     }
-  });
+  }
   return userDocRef;
 };
