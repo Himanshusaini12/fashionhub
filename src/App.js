@@ -4,7 +4,6 @@ import Homepage from "../src/pages/homepage";
 import ShopPage from "./pages/shop/shop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/header/header";
-import Signin from "./pages/sign-in/sign-in";
 import SignInandSignUpPage from "../src/pages/sign-in-and-signup/signin-signup.js";
 import {
   auth,
@@ -24,10 +23,21 @@ class App extends React.Component {
   unSubscribeAuth = null;
 
   componentDidMount() {
-    this.unSubscribeAuth = auth.onAuthStateChanged(async (user) => {
-      const userDocRef = createUserDocumentFromAuth(user);
+    this.unSubscribeAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const docRef = await createUserDocumentFromAuth(userAuth);
+        onSnapshot(docRef, (doc) => {
+          this.setState({
+            currentUser: {
+              id: doc.id,
+              ...doc.data(),
+            },
+          });
+          console.log(this.state);
+        });
+      }
 
-      this.setState({ currentUser: user.displayName });
+      this.setState({ currentUser: userAuth });
     });
   }
 
