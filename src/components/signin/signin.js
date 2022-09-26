@@ -3,6 +3,7 @@ import FormInput from "../../components/form-input/form-input.js";
 import "../signin/signin.scss";
 import CustomButton from "../../components/custome-button/custome-button.js";
 import { auth, signInWithGoogle } from "../../components/firebase/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ class SignIn extends React.Component {
     event.preventDefault();
     const { email, password } = this.state;
     try {
-      await signInWithEmailAndPassword(auth,email, password);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.log(error);
     }
