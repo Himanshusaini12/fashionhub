@@ -2,7 +2,12 @@ import "./App.css";
 import React from "react";
 import Homepage from "../src/pages/homepage";
 import ShopPage from "./pages/shop/shop";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Header from "./components/header/header";
 import SignInandSignUpPage from "../src/pages/sign-in-and-signup/signin-signup.js";
 import {
@@ -46,14 +51,19 @@ class App extends React.Component {
           <Routes>
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="/shop" element={<ShopPage />} />
-            <Route exact path="/signin" element={<SignInandSignUpPage />} />
+            <Route path="/signin" element={<SignInandSignUpPage />} />
           </Routes>
         </div>
       </Router>
     );
   }
 }
+
+const mapStateToProps = ({ user }) => ({
+  CurrentUser: user.currentUser,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
