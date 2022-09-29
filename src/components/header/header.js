@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import "../header/header.scss";
 import { auth } from "../firebase/firebase";
-import {connect} from "react-redux"
-
+import { connect } from "react-redux";
+import CartIcon from "../cart-icon/cart-icon";
 const Header = ({ currentUser }) => (
   <div className="header">
     <Link to="/">
@@ -19,6 +19,7 @@ const Header = ({ currentUser }) => (
         alt="logo"
       />
     </Link>
+
     <div className="options">
       <Link className="option" to="/">
         home
@@ -28,18 +29,19 @@ const Header = ({ currentUser }) => (
       </Link>
       {currentUser ? (
         <button className="option" onClick={() => auth.signOut()}>
-          Welcome  {currentUser.displayName}
+          Welcome {currentUser.displayName}
         </button>
       ) : (
         <Link className="option" to="/signin">
           SIGN IN
         </Link>
       )}
+      <CartIcon />
     </div>
   </div>
 );
 
-const mapStateToProps=state=>({
-    currentUser:state.user.currentUser
-})
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
 export default connect(mapStateToProps)(Header);
