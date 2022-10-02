@@ -12,6 +12,7 @@ import {
 import { onSnapshot, doc } from "firebase/firestore";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.action";
+import SignIn from "./components/signin/signin";
 class App extends React.Component {
   unSubscribeAuth = null;
 
@@ -37,7 +38,7 @@ class App extends React.Component {
     this.unSubscribeAuth();
   }
 
-  render() {
+  render(userAuth) {
     return (
       <Router>
         <div>
@@ -46,7 +47,14 @@ class App extends React.Component {
           <Routes>
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="/shop" element={<ShopPage />} />
-            <Route exact path="/signin" element={<SignInandSignUpPage />} />
+
+            <Route
+              exact
+              path="/signin"
+              element={
+                !this.props.currentUser ? <SignInandSignUpPage /> : <Homepage />
+              }
+            />
           </Routes>
         </div>
       </Router>
