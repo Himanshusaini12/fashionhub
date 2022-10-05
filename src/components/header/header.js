@@ -15,7 +15,7 @@ const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link to="/">
       <img
-        className="logo1"
+        className="logo"
         src={require("../../assets/logo.svg").default}
         alt="logo"
       />
