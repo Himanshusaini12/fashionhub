@@ -15,17 +15,25 @@ const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link to="/">
       <img
-        className="logo"
+        className="logo1"
         src={require("../../assets/logo.svg").default}
         alt="logo"
       />
     </Link>
     <div className="options">
       <Link className="option" to="/">
-        HOME
+        <img
+          className="logo"
+          src={require("../../assets/home.svg").default}
+          alt="logo"
+        />
       </Link>
       <Link className="option" to="/shop">
-        SHOP
+        <img
+          className="logo"
+          src={require("../../assets/shop.svg").default}
+          alt="logo"
+        />
       </Link>
       {currentUser ? (
         <button className="option" onClick={() => auth.signOut()}>
@@ -33,7 +41,11 @@ const Header = ({ currentUser, hidden }) => (
         </button>
       ) : (
         <Link className="option" to="/signin">
-          SIGN IN
+          <img
+            className="logo"
+            src={require("../../assets/account.svg").default}
+            alt="logo"
+          />
         </Link>
       )}
       <CartIcon />
