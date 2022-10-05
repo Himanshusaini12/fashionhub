@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Bitter);
 .header{
     background-color: rgb(0, 127, 146);
     height:100px ;
@@ -19,6 +20,9 @@
     }
     .option{
         padding: 20px;
+         text-decoration: none;
+         color:black;
+         font-family: 'Bitter';
         
     }
 }
