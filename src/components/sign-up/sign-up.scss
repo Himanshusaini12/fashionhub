@@ -1,17 +1,18 @@
 $sub-color: grey;
 $main-color: black;
-
+@import url(https://fonts.googleapis.com/css?family=Bitter);
 .sign-up{
     border: solid;
    overflow:hidden;
    border-radius:5px;
-   padding:100px;
+   padding:10px;
 }
 
 label{
     color: $sub-color;
     font-size: 16px;
-    font-weight: bold;    
+    font-weight: bold; 
+    font-family:'Bitter';   
 }
 
 .group {
@@ -22,6 +23,7 @@ label{
       background-color: white;
       color: $sub-color;
       font-size: 18px;
+      font-family:'Bitter';
       border: none;
       border-radius: 0;
       border-bottom: 1px solid $sub-color;
