@@ -1,5 +1,14 @@
  .comp{
      
+     display:flex;
+     padding:50px 300px 300px 300px;
+   
+    
+ }
+ 
+ @media only screen and (max-width: 600px) {
+  .comp {
      display:block;
      padding:20px 20px 5px;
- }
+  }
+}
