@@ -10,9 +10,10 @@
   top: 90px;
   right: 40px;
   z-index: 5;
+  border-radius:9px;
 
   .cart-items {
-    height: 240px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     overflow: scroll;
