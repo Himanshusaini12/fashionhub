@@ -1,5 +1,5 @@
 import React from "react";
-import Checkout from "../checkout/checkout";
+
 import CustomButton from "../custome-button/custome-button";
 
 import "../cart-dropdown/cart-dropdown.scss";
