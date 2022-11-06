@@ -1,5 +1,11 @@
 import React from "react";
 
+import {
+  BrowserRouter as Router,
+  Link,
+  Routes,
+  Switch,
+} from "react-router-dom";
 import CustomButton from "../custome-button/custome-button";
 
 import "../cart-dropdown/cart-dropdown.scss";
@@ -23,7 +29,9 @@ const CartDropdown = ({ cartItems }) => (
       )}
     </div>
 
-    <CustomButton>CHECKOUT</CustomButton>
+    <Link className="option" to="/checkout">
+      <CustomButton>CHECKOUT</CustomButton>
+    </Link>
   </div>
 );
 
