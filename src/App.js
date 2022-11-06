@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import CheckoutPage from "./pages/checkout/checkout";
 import Homepage from "../src/pages/homepage";
 import ShopPage from "./pages/shop/shop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -47,6 +48,7 @@ class App extends React.Component {
           <Routes>
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="/shop" element={<ShopPage />} />
+            <Route exact path="/checkout" element={<CheckoutPage />} />
 
             <Route
               exact
