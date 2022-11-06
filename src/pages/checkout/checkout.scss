@@ -1,6 +1,15 @@
- .cart-items {
-    height: 240px;
+ 
+
+ .checkout {
+    padding:40px;
     display: flex;
-    flex-direction: column;
-    overflow: scroll;
+  
+    .name{
+      padding:20px
+    }
+    .img{
+      height:150px;
+      width:150px;
+      border:solid;
+    }
   }
