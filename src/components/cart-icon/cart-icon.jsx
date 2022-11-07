@@ -6,7 +6,7 @@ import { Logo } from "../../assets/shopping-bag.svg";
 
 import "../cart-icon/cart-icon.scss";
 
-const CartIcon = ({ toggleCartHidden }) => {
+const CartIcon = ({ toggleCartHidden, cartItems }) => {
   return (
     <div className="cart-icon" onClick={toggleCartHidden}>
       <img
@@ -14,12 +14,17 @@ const CartIcon = ({ toggleCartHidden }) => {
         src={require("../../assets/shopping-bag.svg").default}
         alt="logo"
       />
-
-      <span className="item-count">0</span>
+      {cartItems.price}
+      <span className="item-count">{cartItems.name}</span>
     </div>
   );
 };
 const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
-export default connect(null, mapDispatchToProps)(CartIcon);
+
+const mapStateToProps = ({ cart: { cartItems } }) => ({
+  cartItems,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
