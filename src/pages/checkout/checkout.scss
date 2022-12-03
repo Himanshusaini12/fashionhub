@@ -1,39 +1,7 @@
-.checkout-header {
-    width: 100%;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid darkgrey;
-
-    .header-block {
-      text-transform: capitalize;
-      width: 23%;
-
-      &:last-child {
-        width: 8%;
-      }
-    }
-  }
-
- .checkout {
-    padding:15px 15px 5px 20px;
-    display: flex;
-    
-    .name{
-      padding:65px 0px 20px 65px
-    }
-    .price{
-      padding:65px;
-      margin-left: 130px
-    }
-    .quantity{
-      padding:65px;
-      margin-left: 100px
-    }
-    
-    .img{
-      height:100px;
-      width:100px;
-      border:solid;
-    }
-  }
+.pimage{
+  width:140px;
+  border:solid
+}
+.quantity{
+  padding:20px;
+}
