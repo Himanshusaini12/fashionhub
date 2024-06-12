@@ -11,15 +11,17 @@ import { auth } from "../firebase/firebase";
 import { connect } from "react-redux";
 import CartIcon from "../cart-icon/cart-icon";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
+import { alignProperty } from "@mui/material/styles/cssUtils";
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
     <Link to="/">
       <img
-        className="logo"
+        className="logo2"
         src={require("../../assets/logo.svg").default}
         alt="logo"
       />
     </Link>
+    <h1 className="Name">Trendzy</h1>
     <div className="options">
       <Link className="option" to="/">
         <img

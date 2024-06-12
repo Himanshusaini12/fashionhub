@@ -1,7 +1,88 @@
-.pimage{
-  width:140px;
-  border:solid
-}
-.quantity{
-  padding:20px;
+// Variables
+$primary-color: #333;
+$secondary-color: #f5f5f5;
+$accent-color: #ff6347;
+$font-family: 'Roboto', sans-serif;
+
+// Styles
+.checkout-collection {
+  font-family: $font-family;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .table-header {
+    background-color: $primary-color;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+      border-bottom: 1px solid $secondary-color;
+    }
+
+    td {
+      padding: 10px;
+      vertical-align: middle;
+    }
+
+    .pimage {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 20px;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+
+      button {
+        background-color: $accent-color;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+      }
+
+      span {
+        margin: 0 10px;
+      }
+    }
+  }
+
+  .total-amount {
+    text-align: right;
+    margin-top: 20px;
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .pay-now {
+      background-color: $accent-color;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($accent-color, 10%);
+      }
+    }
+  }
 }
